@@ -1,11 +1,11 @@
 import { motion } from "framer-motion"
-import { SocialLinks, StaticContents } from "../../data/StaticContents"
+import { StaticContents } from "../../data/StaticContents"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6"
-
+import logo from "../../assets/NP.png"
+ 
 const Navbar = () => {
-    const [activeTab, setActiveTab] = useState("")
+    const [activeTab, setActiveTab] = useState("/")
   
     const containerVariants = {
         hidden: { opacity: 0, y: -20 },
@@ -33,11 +33,10 @@ const Navbar = () => {
         animate="visible"
         className="w-full h-auto absolute top-8 z-20"
     >
-        <div className="w-full grid grid-cols-3 justify-between items-center px-12">
-            <div className="flex flex-start items-center">
-                <p className="text-accent text-3xl">I'm <span className="text-white">Nimna Pathum</span></p>
+        <div className="w-full flex justify-between items-center px-40">
+            <div>
+                <img src={logo} alt="Logo" className="w-12 h-12 object-contain"/>
             </div>
-
             <div className="flex gap-2 justify-center items-center">
                 {StaticContents.navbar.map((item) => (
                     <motion.div
@@ -70,23 +69,6 @@ const Navbar = () => {
                             )}
                         </Link>
                     </motion.div>
-                ))}
-            </div>
-
-            <div className="flex justify-end items-center gap-8">
-                {SocialLinks.map((link) => (
-                    <motion.a
-                        key={link.platform}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mx-2 text-white hover:text-accent"
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        {link.icon === "FaGithub" ? <FaGithub size={24} /> : <FaLinkedinIn size={24} />}
-                    </motion.a>
                 ))}
             </div>
         </div>

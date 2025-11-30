@@ -2,7 +2,7 @@ import { SignedIn, SignedOut, SignInButton, SignOutButton } from '@asgardeo/reac
 
 const SignIn = () => {
   return (
-    <div>
+    <div className='w-full h-[80px] p-40 flex justify-start items-center bg-background'>
       <SignedIn>
         <SignOutButton />
       </SignedIn>

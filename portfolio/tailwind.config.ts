@@ -6,7 +6,8 @@ export default {
       colors: {
         primary: "#fd7e14",
         secondary: "#8b5cf6",
-        accent: "#f59e0b",
+        // accent: "#f59e0b",
+        accent: "#ffffff",
         background: "#171717",
         surface: "#f3f4f6",
         text: "#171717",
@@ -15,6 +16,7 @@ export default {
         sans: ["Outfit", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["Google Sans Code", "ui-monospace", "monospace"],
         display: ["Michroma", "ui-sans-serif", "system-ui", "sans-serif"],
+        mid: ["Pirata One", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       spacing: {
         xs: "0.5rem",
