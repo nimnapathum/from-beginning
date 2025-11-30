@@ -1,17 +1,19 @@
-import React from 'react'
+type Project = {
+  title: string;
+  description: string;
+  link: string;
+};
 
-export interface ProjectCardProps {
-  details? : any;
+interface ProjectCardProps {
+  details: Project;
 }
 
-const ProjectCard = ({
-    details
-}) => {
+const ProjectCard = ({ details }: ProjectCardProps) => {
   return (
     <div>
       <p>{details.title}</p>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;

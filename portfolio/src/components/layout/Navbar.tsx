@@ -1,11 +1,11 @@
 import { motion } from "framer-motion"
 import { StaticContents } from "../../data/StaticContents"
 import { Link } from "react-router-dom"
-import { useState } from "react"
 import logo from "../../assets/NP.png"
+import { useState } from "react"
  
 const Navbar = () => {
-    const [activeTab, setActiveTab] = useState("/")
+    const [activeTab, setActiveTab] = useState("/");
   
     const containerVariants = {
         hidden: { opacity: 0, y: -20 },
@@ -24,7 +24,7 @@ const Navbar = () => {
         visible: { opacity: 1, y: 0 }
     }
 
-    const isActive = (path) => activeTab === path
+    const isActive = (path: string) => activeTab === path
 
   return (
     <motion.div

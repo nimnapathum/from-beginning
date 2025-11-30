@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAsgardeo } from '@asgardeo/react';
 import { env } from '../../config/env';
 
 export default function UserProfile() {
-  const { http, isSignedIn } = useAsgardeo();
+  const { isSignedIn, getAccessToken } = useAsgardeo();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -13,21 +13,27 @@ export default function UserProfile() {
 
     (async () => {
       try {
-        const response = await http.request({
-          url: `${env.VITE_ASGARDEO_BASE_URL}/scim2/Me`,
+        const response = await fetch(`${env.VITE_ASGARDEO_BASE_URL}/scim2/Me`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/scim+json',
+            Authorization: `Bearer ${await getAccessToken()}`,
           },
           method: 'GET',
         });
 
-        setUserData(response.data);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        setUserData(responseData);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Error fetching data:', error);
       }
     })();
-  }, [http, isSignedIn]);
+  }, [isSignedIn, getAccessToken]);
 
   if (!isSignedIn) {
     return <div>Please sign in to view your profile.</div>;
