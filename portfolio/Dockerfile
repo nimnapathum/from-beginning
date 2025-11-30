@@ -10,21 +10,23 @@ COPY . .
 RUN npm run build
 
 
-# ---- Stage 2: Nginx with Non-Root User ----
+# ---- Stage 2: Secure Nginx + Choreo compliance ----
 FROM nginx:stable-alpine
 
-# Create a non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# Create user and group with UID/GID 10001
+RUN addgroup -g 10001 appgroup && adduser -D -u 10001 -G appgroup appuser
 
-# Copy build files with correct permissions
+# Copy build files
 COPY --from=build /app/dist /usr/share/nginx/html
-RUN chown -R appuser:appgroup /usr/share/nginx/html
 
-# Update Nginx to run as non-root
+# Fix file permissions for non-root user
+RUN chown -R 10001:10001 /usr/share/nginx/html
+
+# Update nginx to run as UID 10001
 RUN sed -i 's/user  nginx;/user  appuser;/g' /etc/nginx/nginx.conf
 
-# Switch to non-root user
-USER appuser
+# Switch to Choreo-compliant user
+USER 10001
 
 EXPOSE 80
 
