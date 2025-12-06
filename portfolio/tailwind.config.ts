@@ -16,7 +16,7 @@ export default {
         sans: ["Outfit", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["Google Sans Code", "ui-monospace", "monospace"],
         display: ["Michroma", "ui-sans-serif", "system-ui", "sans-serif"],
-        mid: ["Pirata One", "ui-sans-serif", "system-ui", "sans-serif"],
+        mid: ["Bangers", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       spacing: {
         xs: "0.5rem",
